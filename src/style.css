@@ -1,0 +1,297 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.header {
+  background: #2c3e50;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.header h1 {
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-size: 1.8rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: #34495e;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.tab-btn:hover {
+  background: #3d566e;
+}
+
+.tab-btn.active {
+  background: #3498db;
+}
+
+.main {
+  padding: 1rem;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* Learn Section */
+.morse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 0.5rem;
+}
+
+.morse-item {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.morse-char {
+  font-weight: bold;
+  color: #3498db;
+  margin-bottom: 0.2rem;
+}
+
+.morse-code {
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+/* Practice Section */
+.settings {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.setting-group {
+  flex: 1;
+}
+
+.setting-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.setting-group input {
+  width: 100%;
+}
+
+.practice-area {
+  text-align: center;
+}
+
+.challenge {
+  margin-bottom: 2rem;
+}
+
+.challenge-text {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #3498db;
+}
+
+#practice-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#practice-input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.controls {
+  margin-bottom: 2rem;
+}
+
+.controls button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  margin: 0 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.controls button:hover {
+  background: #2980b9;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Translate Section */
+.translator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group textarea {
+  width: 100%;
+  height: 100px;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.input-group button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background: #2980b9;
+}
+
+.output {
+  background: #f8f9fa;
+  padding: 0.8rem;
+  border-radius: 4px;
+  min-height: 60px;
+  font-family: monospace;
+  font-size: 1.1rem;
+  word-break: break-word;
+}
+
+/* Feedback */
+.correct {
+  background: #d4edda !important;
+  border-color: #28a745 !important;
+}
+
+.incorrect {
+  background: #f8d7da !important;
+  border-color: #dc3545 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app {
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .settings {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .translator {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .morse-grid {
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  }
+}
