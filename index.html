@@ -4,96 +4,138 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Telegraph Trainer</title>
+    <title>TELEGRAPH OPERATOR 1844</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/src/style.css">
   </head>
   <body>
-    <div class="app">
-      <header class="header">
-        <h1>TELEGRAPH TRAINER</h1>
-        <nav class="nav">
-          <button id="learn-tab" class="tab-btn active">LEARN</button>
-          <button id="practice-tab" class="tab-btn">PRACTICE</button>
-          <button id="translate-tab" class="tab-btn">TRANSLATE</button>
-        </nav>
-      </header>
+    <div class="telegraph-frame">
+      <div class="telegraph-paper">
+        <header class="telegraph-header">
+          <h1 class="telegraph-title">TELEGRAPH OPERATOR</h1>
+          <div class="telegraph-subtitle">APRIL 1844 • WASHINGTON D.C.</div>
+          <nav class="telegraph-nav">
+            <button id="learn-tab" class="telegraph-tab active">• LEARN •</button>
+            <button id="practice-tab" class="telegraph-tab">• PRACTICE •</button>
+            <button id="translate-tab" class="telegraph-tab">• TRANSLATE •</button>
+          </nav>
+        </header>
 
-      <main class="main">
-        <!-- Learn Section -->
-        <section id="learn-section" class="section active">
-          <div class="card">
-            <h2>MORSE CODE ALPHABET</h2>
-            <div class="morse-grid" id="morse-grid"></div>
-          </div>
-        </section>
+        <main class="telegraph-main">
+          <!-- Learn Section -->
+          <section id="learn-section" class="tab-content active">
+            <div class="telegraph-card">
+              <h2 class="section-title">• MORSE CODE REFERENCE •</h2>
 
-        <!-- Practice Section -->
-        <section id="practice-section" class="section">
-          <div class="card">
-            <div class="settings">
-              <div class="setting-group">
-                <label>SPEED</label>
-                <input type="range" id="speed-slider" min="5" max="30" value="15">
-                <span id="speed-value">15 WPM</span>
-              </div>
-              <div class="setting-group">
-                <label>TONE</label>
-                <input type="range" id="freq-slider" min="400" max="1200" value="800">
-                <span id="freq-value">800 Hz</span>
-              </div>
-            </div>
-
-            <div class="practice-area">
-              <div class="challenge-display">
-                <div class="challenge-label">TRANSMIT:</div>
-                <div class="challenge-text" id="challenge-text"></div>
-              </div>
-
-              <input type="text" id="practice-input" placeholder="TYPE YOUR ANSWER...">
-
-              <div class="practice-controls">
-                <button id="play-btn" class="btn-primary">🔊 PLAY</button>
-                <button id="new-btn" class="btn-secondary">🎲 NEW</button>
-              </div>
-
-              <div class="stats">
-                <div class="stat-item">
-                  <div class="stat-number" id="correct">0</div>
-                  <div class="stat-label">CORRECT</div>
+              <div class="reference-sections">
+                <div class="reference-group">
+                  <h3 class="group-title">LETTERS</h3>
+                  <div class="morse-grid" id="letters-grid"></div>
                 </div>
-                <div class="stat-item">
-                  <div class="stat-number" id="total">0</div>
-                  <div class="stat-label">TOTAL</div>
+
+                <div class="reference-group">
+                  <h3 class="group-title">NUMBERS</h3>
+                  <div class="morse-grid" id="numbers-grid"></div>
                 </div>
-                <div class="stat-item">
-                  <div class="stat-number" id="accuracy">0%</div>
-                  <div class="stat-label">ACCURACY</div>
+
+                <div class="reference-group">
+                  <h3 class="group-title">SYMBOLS</h3>
+                  <div class="morse-grid" id="symbols-grid"></div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- Translate Section -->
-        <section id="translate-section" class="section">
-          <div class="card">
-            <div class="translator">
-              <div class="translate-panel">
-                <textarea id="text-input" placeholder="Enter text to convert..."></textarea>
-                <button id="to-morse-btn" class="btn-primary">→ MORSE</button>
-                <div class="output" id="morse-output"></div>
-                <button id="play-morse-btn" class="btn-secondary">🔊 PLAY</button>
+          <!-- Practice Section -->
+          <section id="practice-section" class="tab-content">
+            <div class="telegraph-card">
+              <h2 class="section-title">• OPERATOR TRAINING •</h2>
+
+              <div class="telegraph-controls">
+                <div class="control-group">
+                  <label class="control-label">SPEED:</label>
+                  <div class="slider-container">
+                    <input type="range" id="speed-slider" min="5" max="30" value="12" class="telegraph-slider">
+                    <span id="speed-value" class="control-value">12 WPM</span>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label">TONE:</label>
+                  <div class="slider-container">
+                    <input type="range" id="freq-slider" min="400" max="1200" value="600" class="telegraph-slider">
+                    <span id="freq-value" class="control-value">600 Hz</span>
+                  </div>
+                </div>
               </div>
 
-              <div class="translate-panel">
-                <textarea id="morse-input" placeholder="Enter Morse code (. - / space)"></textarea>
-                <button id="to-text-btn" class="btn-primary">→ TEXT</button>
-                <div class="output" id="text-output"></div>
+              <div class="practice-area">
+                <div class="telegraph-display">
+                  <div class="display-header">TRANSMIT THIS MESSAGE:</div>
+                  <div id="challenge-text" class="challenge-display"></div>
+                </div>
+
+                <div class="input-section">
+                  <input type="text" id="practice-input" class="telegraph-input" placeholder="TYPE YOUR RESPONSE...">
+                  <div class="button-row">
+                    <button id="play-btn" class="telegraph-button">• TRANSMIT •</button>
+                    <button id="new-btn" class="telegraph-button">• NEW MESSAGE •</button>
+                  </div>
+                </div>
+
+                <div class="telegraph-stats">
+                  <div class="stat-box">
+                    <div class="stat-number" id="correct">0</div>
+                    <div class="stat-label">CORRECT</div>
+                  </div>
+                  <div class="stat-box">
+                    <div class="stat-number" id="total">0</div>
+                    <div class="stat-label">ATTEMPTS</div>
+                  </div>
+                  <div class="stat-box">
+                    <div class="stat-number" id="accuracy">0%</div>
+                    <div class="stat-label">ACCURACY</div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
+
+          <!-- Translate Section -->
+          <section id="translate-section" class="tab-content">
+            <div class="telegraph-card">
+              <h2 class="section-title">• TELEGRAPH TRANSLATOR •</h2>
+
+              <div class="translator-sections">
+                <div class="translator-panel">
+                  <label class="panel-label">PLAIN TEXT:</label>
+                  <textarea id="text-input" class="telegraph-textarea" placeholder="ENTER YOUR MESSAGE..."></textarea>
+                  <button id="to-morse-btn" class="telegraph-button full-width">• ENCODE TO MORSE •</button>
+                  <div class="output-section">
+                    <div class="output-label">MORSE CODE:</div>
+                    <div id="morse-output" class="telegraph-output"></div>
+                    <button id="play-morse-btn" class="telegraph-button">• TRANSMIT •</button>
+                  </div>
+                </div>
+
+                <div class="translator-panel">
+                  <label class="panel-label">MORSE CODE:</label>
+                  <textarea id="morse-input" class="telegraph-textarea" placeholder="ENTER DOTS AND DASHES (. - /)"></textarea>
+                  <button id="to-text-btn" class="telegraph-button full-width">• DECODE TO TEXT •</button>
+                  <div class="output-section">
+                    <div class="output-label">PLAIN TEXT:</div>
+                    <div id="text-output" class="telegraph-output"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="telegraph-footer">
+          <div class="footer-text">"WHAT HATH GOD WROUGHT" - 1844</div>
+        </footer>
+      </div>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>

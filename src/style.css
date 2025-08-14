@@ -1,19 +1,15 @@
-/* Telegraph-inspired Modern Design */
+/* 1844 Telegraph Operator - Vintage Interface */
 :root {
-  --telegraph-dark: #2c1810;
-  --telegraph-medium: #5d4037;
-  --telegraph-light: #d7ccc8;
-  --telegraph-paper: #f5f0e1;
-  --telegraph-accent: #8b7355;
-  --success: #2e7d32;
-  --error: #c62828;
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --border-radius: 4px;
-  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --telegraph-black: #1a0e0a;
+  --telegraph-dark-brown: #3d2a24;
+  --telegraph-brown: #6b4c35;
+  --telegraph-medium-brown: #8b7355;
+  --telegraph-light-brown: #b8a99a;
+  --telegraph-paper: #f2ebe3;
+  --telegraph-highlight: #d4c8b0;
+  --telegraph-ink: #2c1810;
+  --success-green: #2e5d2e;
+  --error-red: #7d2c2c;
 }
 
 * {
@@ -23,385 +19,663 @@
 }
 
 body {
-  font-family: 'Georgia', serif;
-  background: var(--telegraph-paper);
-  color: var(--telegraph-dark);
-  line-height: 1.6;
+  font-family: 'Courier Prime', monospace;
+  background: var(--telegraph-dark-brown);
+  color: var(--telegraph-ink);
+  line-height: 1.4;
+  min-height: 100vh;
+  background-image:
+    linear-gradient(90deg, rgba(59, 42, 36, 0.1) 50%, transparent 50%),
+    linear-gradient(rgba(59, 42, 36, 0.1) 50%, transparent 50%);
+  background-size: 20px 20px;
+}
+
+/* Telegraph Frame */
+.telegraph-frame {
+  max-width: 100%;
+  margin: 0;
+  background: var(--telegraph-black);
+  border: 12px solid var(--telegraph-dark-brown);
+  box-shadow:
+    0 0 0 2px var(--telegraph-brown),
+    0 0 20px rgba(0,0,0,0.8),
+    inset 0 0 30px rgba(0,0,0,0.5);
+  position: relative;
   min-height: 100vh;
 }
 
-.app {
-  max-width: 900px;
-  margin: 0 auto;
-  min-height: 100vh;
-  background: white;
-  box-shadow: var(--shadow);
+.telegraph-frame::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid rgba(139, 115, 85, 0.3);
+  pointer-events: none;
+}
+
+/* Telegraph Paper */
+.telegraph-paper {
+  background: var(--telegraph-paper);
+  min-height: calc(100vh - 24px);
+  position: relative;
+  box-shadow: inset 0 0 40px rgba(212, 200, 176, 0.6);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(139, 115, 85, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 90% 80%, rgba(139, 115, 85, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* Header */
-.header {
-  background: var(--telegraph-dark);
-  color: white;
-  padding: var(--spacing-md);
+.telegraph-header {
   text-align: center;
-  border-bottom: 3px solid var(--telegraph-accent);
+  padding: 30px 20px 25px;
+  border-bottom: 4px double var(--telegraph-medium-brown);
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.header h1 {
-  font-family: 'Times New Roman', serif;
-  font-weight: 300;
-  font-size: 2.2rem;
-  letter-spacing: 3px;
-  margin-bottom: var(--spacing-sm);
+.telegraph-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem;
+  color: var(--telegraph-ink);
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  font-weight: 700;
 }
 
-.nav {
+.telegraph-subtitle {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--telegraph-brown);
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+/* Navigation */
+.telegraph-nav {
   display: flex;
-  gap: 2px;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.tab-btn {
-  flex: 1;
-  background: rgba(255,255,255,0.1);
-  color: white;
-  border: none;
-  padding: var(--spacing-sm);
+.telegraph-tab {
+  font-family: 'Courier Prime', monospace;
+  background: transparent;
+  border: 2px solid var(--telegraph-medium-brown);
+  color: var(--telegraph-ink);
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
   cursor: pointer;
-  font-family: 'Georgia', serif;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  transition: all 0.2s ease;
+  transition: none;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
 }
 
-.tab-btn:hover {
-  background: rgba(255,255,255,0.2);
+.telegraph-tab:hover {
+  background: rgba(139, 115, 85, 0.1);
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
 }
 
-.tab-btn.active {
-  background: var(--telegraph-medium);
+.telegraph-tab.active {
+  background: var(--telegraph-brown);
+  color: white;
+  border-color: var(--telegraph-brown);
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 /* Main Content */
-.main {
-  padding: var(--spacing-md);
+.telegraph-main {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.section {
+.tab-content {
   display: none;
+  animation: pageTurn 0.6s steps(6);
 }
 
-.section.active {
+.tab-content.active {
   display: block;
-  animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes pageTurn {
+  0% { opacity: 0; transform: translateX(20px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 /* Cards */
-.card {
-  background: white;
-  border: 1px solid var(--telegraph-light);
-  padding: var(--spacing-lg);
-  box-shadow: var(--shadow);
+.telegraph-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px solid var(--telegraph-medium-brown);
+  padding: 30px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  position: relative;
 }
 
-.card h2 {
+.telegraph-card::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 1px solid rgba(139, 115, 85, 0.4);
+  pointer-events: none;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
   text-align: center;
-  color: var(--telegraph-medium);
-  font-weight: 400;
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-lg);
-  letter-spacing: 1px;
-  border-bottom: 1px solid var(--telegraph-light);
-  padding-bottom: var(--spacing-sm);
+  color: var(--telegraph-brown);
+  font-size: 2rem;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  border-bottom: 2px solid var(--telegraph-light-brown);
+  padding-bottom: 15px;
+  text-transform: uppercase;
 }
 
-/* Learn Section - Large Morse Grid */
+/* Learn Section - Grouped References */
+.reference-sections {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.reference-group {
+  margin-bottom: 20px;
+}
+
+.group-title {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.3rem;
+  color: var(--telegraph-brown);
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+  border-bottom: 1px solid var(--telegraph-light-brown);
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
 .morse-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: var(--spacing-sm);
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
 }
 
 .morse-item {
-  background: var(--telegraph-paper);
-  border: 1px solid var(--telegraph-light);
-  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--telegraph-light-brown);
+  padding: 20px 15px;
   text-align: center;
-  transition: transform 0.2s ease;
+  font-family: 'Courier Prime', monospace;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  transition: none;
+  animation: itemAppear 0.8s steps(8) both;
 }
 
-.morse-item:hover {
-  transform: translateY(-2px);
-  border-color: var(--telegraph-medium);
+@keyframes itemAppear {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-.morse-char {
-  font-size: 1.8rem;
+.morse-item .morse-char {
+  font-size: 2rem;
   font-weight: bold;
-  color: var(--telegraph-medium);
-  margin-bottom: var(--spacing-xs);
+  color: var(--telegraph-brown);
+  margin-bottom: 8px;
+  font-family: 'Courier Prime', monospace;
 }
 
-.morse-code {
-  font-family: 'Courier New', monospace;
-  font-size: 1.2rem;
+.morse-item .morse-code {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.3rem;
   letter-spacing: 2px;
-  color: var(--telegraph-dark);
+  word-break: break-all;
+  color: var(--telegraph-ink);
 }
 
 /* Practice Section */
-.settings {
+.telegraph-controls {
   display: flex;
-  gap: var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--telegraph-light);
+  justify-content: space-around;
   flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 35px;
+  padding: 25px;
+  border: 2px solid var(--telegraph-light-brown);
+  background: rgba(255, 255, 255, 0.6);
 }
 
-.setting-group {
-  flex: 1;
-  min-width: 200px;
+.control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Courier Prime', monospace;
 }
 
-.setting-group label {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--telegraph-medium);
-  margin-bottom: var(--spacing-xs);
-  letter-spacing: 1px;
+.control-label {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  color: var(--telegraph-brown);
+  text-transform: uppercase;
   font-weight: bold;
 }
 
-.setting-group input {
-  width: 100%;
-  margin-bottom: var(--spacing-xs);
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-.setting-group span {
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
-  color: var(--telegraph-medium);
+.telegraph-slider {
+  width: 150px;
+  height: 8px;
+  background: var(--telegraph-light-brown);
+  border: 1px solid var(--telegraph-medium-brown);
+  appearance: none;
+  cursor: pointer;
+}
+
+.telegraph-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--telegraph-brown);
+  border: 2px solid white;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.control-value {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--telegraph-ink);
+  font-weight: bold;
 }
 
 .practice-area {
   text-align: center;
 }
 
-.challenge-display {
-  margin-bottom: var(--spacing-lg);
-  padding: var(--spacing-lg);
-  background: var(--telegraph-paper);
-  border: 2px dashed var(--telegraph-light);
+.telegraph-display {
+  margin: 30px 0;
+  padding: 30px;
+  border: 3px solid var(--telegraph-medium-brown);
+  background: rgba(255, 255, 255, 0.9);
   position: relative;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
 }
 
-.challenge-label {
-  font-size: 0.9rem;
-  color: var(--telegraph-medium);
-  letter-spacing: 1px;
-  margin-bottom: var(--spacing-sm);
-}
-
-.challenge-text {
-  font-size: 3rem;
-  font-weight: 300;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 3px;
-  color: var(--telegraph-dark);
-}
-
-#practice-input {
-  width: 100%;
-  max-width: 400px;
-  padding: var(--spacing-md);
-  font-size: 1.3rem;
-  font-family: 'Courier New', monospace;
-  border: 2px solid var(--telegraph-light);
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-  letter-spacing: 2px;
-}
-
-#practice-input:focus {
-  outline: none;
-  border-color: var(--telegraph-medium);
-  box-shadow: 0 0 0 2px rgba(93, 64, 55, 0.2);
-}
-
-.practice-controls {
-  margin-bottom: var(--spacing-xl);
-}
-
-.btn-primary, .btn-secondary {
-  background: var(--telegraph-medium);
-  color: white;
-  border: none;
-  padding: var(--spacing-sm) var(--spacing-md);
-  margin: 0 var(--spacing-xs);
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  font-family: 'Georgia', serif;
+.display-header {
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
-  letter-spacing: 1px;
-  transition: all 0.2s ease;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  color: var(--telegraph-brown);
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-.btn-primary:hover, .btn-secondary:hover {
-  background: var(--telegraph-dark);
-  transform: translateY(-1px);
+.challenge-display {
+  font-family: 'Courier Prime', monospace;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: var(--telegraph-ink);
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px dashed var(--telegraph-medium-brown);
+  text-transform: uppercase;
 }
 
-.btn-secondary {
-  background: var(--telegraph-light);
-  color: var(--telegraph-dark);
+.input-section {
+  margin: 30px 0;
 }
 
-/* Stats */
-.stats {
+.telegraph-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 18px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.4rem;
+  border: 3px solid var(--telegraph-medium-brown);
+  background: rgba(255, 255, 255, 0.95);
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.telegraph-input:focus {
+  outline: none;
+  border-color: var(--telegraph-brown);
+  box-shadow: 0 0 8px rgba(107, 76, 53, 0.4);
+}
+
+.button-row {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-xl);
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-.stat-item {
+.telegraph-button {
+  font-family: 'Courier Prime', monospace;
+  background: var(--telegraph-brown);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+  border: 2px solid var(--telegraph-dark-brown);
+}
+
+.telegraph-button:hover {
+  background: var(--telegraph-dark-brown);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+.telegraph-button.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Stats */
+.telegraph-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  padding: 25px;
+  border-top: 2px solid var(--telegraph-light-brown);
+}
+
+.stat-box {
   text-align: center;
 }
 
 .stat-number {
-  font-size: 2rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: 2.5rem;
   font-weight: bold;
-  color: var(--telegraph-medium);
-  font-family: 'Courier New', monospace;
+  color: var(--telegraph-brown);
+  margin-bottom: 5px;
 }
 
 .stat-label {
-  font-size: 0.8rem;
-  color: var(--telegraph-medium);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.9rem;
   letter-spacing: 1px;
+  color: var(--telegraph-medium-brown);
   text-transform: uppercase;
 }
 
 /* Translate Section */
-.translator {
+.translator-sections {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-lg);
+  gap: 30px;
 }
 
-.translate-panel {
+.translator-panel {
   display: flex;
   flex-direction: column;
 }
 
-.translate-panel textarea {
+.panel-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  color: var(--telegraph-brown);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.telegraph-textarea {
   width: 100%;
   height: 120px;
-  padding: var(--spacing-sm);
-  border: 1px solid var(--telegraph-light);
-  font-family: inherit;
-  margin-bottom: var(--spacing-sm);
-  resize: vertical;
-  font-size: 1.1rem;
-}
-
-.translate-panel textarea:focus {
-  outline: none;
-  border-color: var(--telegraph-medium);
-  box-shadow: 0 0 0 2px rgba(93, 64, 55, 0.2);
-}
-
-.translate-panel button {
-  margin-bottom: var(--spacing-sm);
-}
-
-.output {
-  background: var(--telegraph-paper);
-  padding: var(--spacing-sm);
-  border: 1px solid var(--telegraph-light);
-  min-height: 80px;
-  font-family: 'Courier New', monospace;
+  padding: 18px;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.2rem;
+  border: 2px solid var(--telegraph-medium-brown);
+  background: rgba(255, 255, 255, 0.95);
+  margin-bottom: 15px;
+  resize: vertical;
   letter-spacing: 1px;
-  word-break: break-word;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.telegraph-textarea:focus {
+  outline: none;
+  border-color: var(--telegraph-brown);
+  box-shadow: 0 0 8px rgba(107, 76, 53, 0.4);
+}
+
+.output-section {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.output-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  color: var(--telegraph-brown);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.telegraph-output {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--telegraph-medium-brown);
+  padding: 18px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  word-wrap: break-word;
+  min-height: 100px;
+  margin-bottom: 15px;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+.telegraph-footer {
+  text-align: center;
+  padding: 25px;
+  border-top: 4px double var(--telegraph-medium-brown);
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.footer-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  letter-spacing: 2px;
+  color: var(--telegraph-brown);
 }
 
 /* Feedback */
 .correct {
-  background: #e8f5e8 !important;
-  border-color: var(--success) !important;
+  background: #e6f4e6 !important;
+  border-color: var(--success-green) !important;
+  animation: successPulse 0.6s steps(3);
+}
+
+@keyframes successPulse {
+  0%, 100% { background: #e6f4e6; }
+  50% { background: #d4edda; }
 }
 
 .incorrect {
-  background: #ffebee !important;
-  border-color: var(--error) !important;
+  background: #f8e6e6 !important;
+  border-color: var(--error-red) !important;
+  animation: errorShake 0.4s steps(4);
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .app {
-    margin: 0;
-    box-shadow: none;
+  .telegraph-frame {
+    border-width: 6px;
   }
 
-  .header {
-    padding: var(--spacing-sm);
+  .telegraph-title {
+    font-size: 2rem;
+    letter-spacing: 2px;
   }
 
-  .header h1 {
-    font-size: 1.8rem;
+  .telegraph-nav {
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  .main {
-    padding: var(--spacing-sm);
+  .telegraph-tab {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
   }
 
-  .card {
-    padding: var(--spacing-md);
+  .telegraph-main {
+    padding: 15px;
   }
 
-  .settings {
+  .telegraph-card {
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .telegraph-controls {
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: 20px;
+    padding: 15px;
   }
 
-  .translator {
+  .translator-sections {
     grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+    gap: 20px;
   }
 
-  .stats {
-    gap: var(--spacing-md);
+  .telegraph-stats {
+    flex-direction: column;
+    gap: 20px;
   }
 
   .morse-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: var(--spacing-xs);
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
   }
 
   .morse-item {
-    padding: var(--spacing-sm);
+    padding: 15px 10px;
   }
 
-  .morse-char {
-    font-size: 1.4rem;
+  .morse-item .morse-char {
+    font-size: 1.6rem;
   }
 
-  .morse-code {
-    font-size: 1rem;
+  .morse-item .morse-code {
+    font-size: 1.1rem;
   }
 
-  .challenge-text {
+  .challenge-display {
     font-size: 2rem;
+    letter-spacing: 2px;
+    padding: 15px;
   }
 
-  #practice-input {
+  .telegraph-input {
     max-width: 100%;
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+
+  .button-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .telegraph-button {
+    width: 100%;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .telegraph-header {
+    padding: 20px 10px 15px;
+  }
+
+  .telegraph-title {
+    font-size: 1.6rem;
+  }
+
+  .telegraph-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .morse-grid {
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  }
+
+  .morse-item {
+    padding: 12px 8px;
+  }
+
+  .morse-item .morse-char {
+    font-size: 1.3rem;
+  }
+
+  .morse-item .morse-code {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .challenge-display {
+    font-size: 1.5rem;
+  }
+
+  .telegraph-stats {
+    gap: 15px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
   }
 }

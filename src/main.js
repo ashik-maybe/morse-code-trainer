@@ -1,4 +1,4 @@
-// Telegraph Trainer - Modern Morse Code
+// 1844 Telegraph Operator - Vintage Interface
 import { MORSE_CODE } from './morse.js';
 
 const REVERSE_MORSE = Object.fromEntries(
@@ -41,7 +41,10 @@ const elements = {
   toMorseBtn: document.getElementById('to-morse-btn'),
   toTextBtn: document.getElementById('to-text-btn'),
   playMorseBtn: document.getElementById('play-morse-btn'),
-  morseGrid: document.getElementById('morse-grid')
+  // Learn elements
+  lettersGrid: document.getElementById('letters-grid'),
+  numbersGrid: document.getElementById('numbers-grid'),
+  symbolsGrid: document.getElementById('symbols-grid')
 };
 
 // Initialize app
@@ -54,39 +57,78 @@ function init() {
   updateStats();
 }
 
-// Tab switching
+// Tab switching with vintage mechanical feel
 function setupTabs() {
   Object.entries(elements.tabs).forEach(([name, tab]) => {
     tab.addEventListener('click', () => {
-      // Remove active classes
+      // Remove active classes with mechanical delay
       Object.values(elements.tabs).forEach(t => t.classList.remove('active'));
       Object.values(elements.sections).forEach(s => s.classList.remove('active'));
 
-      // Add active classes
-      tab.classList.add('active');
-      elements.sections[name].classList.add('active');
+      // Add active classes with vintage feel
+      setTimeout(() => {
+        tab.classList.add('active');
+        elements.sections[name].classList.add('active');
+      }, 100);
     });
   });
 }
 
-// Learn section
+// Learn section with grouped references
 function setupLearnSection() {
-  elements.morseGrid.innerHTML = '';
+  // Clear grids
+  elements.lettersGrid.innerHTML = '';
+  elements.numbersGrid.innerHTML = '';
+  elements.symbolsGrid.innerHTML = '';
+
+  // Group characters
+  const letters = {};
+  const numbers = {};
+  const symbols = {};
 
   Object.entries(MORSE_CODE).forEach(([char, code]) => {
-    const item = document.createElement('div');
-    item.className = 'morse-item';
-    item.innerHTML = `
-      <div class="morse-char">${char}</div>
-      <div class="morse-code">${code}</div>
-    `;
-    elements.morseGrid.appendChild(item);
+    if (/[A-Z]/.test(char)) {
+      letters[char] = code;
+    } else if (/[0-9]/.test(char)) {
+      numbers[char] = code;
+    } else {
+      symbols[char] = code;
+    }
   });
+
+  // Populate letter grid
+  Object.entries(letters).forEach(([char, code]) => {
+    const item = createMorseItem(char, code);
+    elements.lettersGrid.appendChild(item);
+  });
+
+  // Populate number grid
+  Object.entries(numbers).forEach(([char, code]) => {
+    const item = createMorseItem(char, code);
+    elements.numbersGrid.appendChild(item);
+  });
+
+  // Populate symbol grid
+  Object.entries(symbols).forEach(([char, code]) => {
+    const item = createMorseItem(char, code);
+    elements.symbolsGrid.appendChild(item);
+  });
+}
+
+// Create Morse item element
+function createMorseItem(char, code) {
+  const item = document.createElement('div');
+  item.className = 'morse-item';
+  item.innerHTML = `
+    <div class="morse-char">${char}</div>
+    <div class="morse-code">${code}</div>
+  `;
+  return item;
 }
 
 // Practice section
 function setupPracticeSection() {
-  // Sliders
+  // Sliders with vintage feedback
   elements.speedSlider.addEventListener('input', () => {
     elements.speedValue.textContent = `${elements.speedSlider.value} WPM`;
   });
@@ -95,12 +137,15 @@ function setupPracticeSection() {
     elements.freqValue.textContent = `${elements.freqSlider.value} Hz`;
   });
 
-  // Input
+  // Input with vintage response
   elements.practiceInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') checkAnswer();
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      checkAnswer();
+    }
   });
 
-  // Buttons
+  // Buttons with mechanical click
   elements.playBtn.addEventListener('click', playChallenge);
   elements.newBtn.addEventListener('click', generateChallenge);
 }
@@ -125,13 +170,44 @@ function setupTranslateSection() {
 
 // Generate practice challenge
 function generateChallenge() {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#.?';
-  const length = Math.floor(Math.random() * 4) + 1;
-  let challenge = '';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789';
+  const symbols = '@#.?';
 
-  for (let i = 0; i < length; i++) {
-    challenge += chars[Math.floor(Math.random() * chars.length)];
-  }
+  const challengeTypes = [
+    () => {
+      // Single character
+      return chars[Math.floor(Math.random() * chars.length)];
+    },
+    () => {
+      // Two characters
+      let result = '';
+      for (let i = 0; i < 2; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return result;
+    },
+    () => {
+      // Word (3-4 characters)
+      const length = Math.floor(Math.random() * 2) + 3;
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return result;
+    },
+    () => {
+      // Number
+      return numbers[Math.floor(Math.random() * numbers.length)];
+    },
+    () => {
+      // Symbol
+      return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+  ];
+
+  const randomType = challengeTypes[Math.floor(Math.random() * challengeTypes.length)];
+  const challenge = randomType();
 
   elements.challengeText.textContent = challenge;
   elements.practiceInput.value = '';
@@ -139,7 +215,7 @@ function generateChallenge() {
   elements.practiceInput.focus();
 }
 
-// Check answer
+// Check answer with vintage feedback
 function checkAnswer() {
   const input = elements.practiceInput.value.trim().toUpperCase();
   const correct = elements.challengeText.textContent;
@@ -149,15 +225,19 @@ function checkAnswer() {
   if (input === correct) {
     stats.correct++;
     elements.practiceInput.classList.add('correct');
+
+    // Vintage success feedback
     setTimeout(() => {
       generateChallenge();
       updateStats();
-    }, 800);
+    }, 1000);
   } else {
     elements.practiceInput.classList.add('incorrect');
+
+    // Vintage error feedback
     setTimeout(() => {
       elements.practiceInput.classList.remove('incorrect');
-    }, 1000);
+    }, 1500);
   }
 
   updateStats();
@@ -194,7 +274,7 @@ function morseToText(morse) {
   }).join('');
 }
 
-// Play morse code
+// Play morse code with vintage telegraph sound
 function playMorse(morse) {
   if (!audioContext) {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -203,6 +283,7 @@ function playMorse(morse) {
   const wpm = parseInt(elements.speedSlider.value);
   const freq = parseInt(elements.freqSlider.value);
 
+  // Calculate timing based on WPM (vintage standard)
   const dotDuration = 1.2 / wpm;
   const dashDuration = dotDuration * 3;
   const gap = dotDuration;
@@ -210,6 +291,7 @@ function playMorse(morse) {
 
   let time = 0;
 
+  // Simulate vintage telegraph keying
   for (let i = 0; i < morse.length; i++) {
     const char = morse[i];
 
@@ -227,7 +309,7 @@ function playMorse(morse) {
   }
 }
 
-// Play beep
+// Play beep with vintage telegraph characteristics
 function beep(delay, duration, frequency) {
   if (!audioContext) return;
 
@@ -238,11 +320,12 @@ function beep(delay, duration, frequency) {
   gainNode.connect(audioContext.destination);
 
   oscillator.frequency.value = frequency;
-  oscillator.type = 'sine';
+  oscillator.type = 'square'; // Vintage telegraph sound
 
+  // Vintage envelope for authentic feel
   gainNode.gain.setValueAtTime(0, audioContext.currentTime + delay);
-  gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + delay + 0.01);
-  gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + delay + duration - 0.01);
+  gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + delay + 0.002);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + delay + duration - 0.001);
 
   oscillator.start(audioContext.currentTime + delay);
   oscillator.stop(audioContext.currentTime + delay + duration);
@@ -250,3 +333,12 @@ function beep(delay, duration, frequency) {
 
 // Initialize when DOM loaded
 document.addEventListener('DOMContentLoaded', init);
+
+// Add vintage page load effect
+window.addEventListener('load', () => {
+  document.body.style.opacity = '0';
+  setTimeout(() => {
+    document.body.style.transition = 'opacity 1.5s steps(12)';
+    document.body.style.opacity = '1';
+  }, 200);
+});
