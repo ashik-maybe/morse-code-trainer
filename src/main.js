@@ -1,4 +1,4 @@
-// Modern Morse Code Trainer
+// Telegraph Trainer - Modern Morse Code
 import { MORSE_CODE } from './morse.js';
 
 const REVERSE_MORSE = Object.fromEntries(
@@ -88,11 +88,11 @@ function setupLearnSection() {
 function setupPracticeSection() {
   // Sliders
   elements.speedSlider.addEventListener('input', () => {
-    elements.speedValue.textContent = elements.speedSlider.value;
+    elements.speedValue.textContent = `${elements.speedSlider.value} WPM`;
   });
 
   elements.freqSlider.addEventListener('input', () => {
-    elements.freqValue.textContent = elements.freqSlider.value;
+    elements.freqValue.textContent = `${elements.freqSlider.value} Hz`;
   });
 
   // Input
